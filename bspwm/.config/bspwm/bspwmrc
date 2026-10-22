@@ -1,0 +1,146 @@
+#!/bin/sh
+# bspwm config: multi-monitor, HiDPI-aware (laptop eDP + external DP/HDMI)
+
+# Needed for some Java apps (PhpStorm, IntelliJ)
+wmname LG3D
+
+#######################################
+# GLOBAL DPI
+#######################################
+# Set global DPI for normal monitors (DP and HDMI)
+# Adjusts font and UI size on non-HiDPI screens
+echo "Xft.dpi: 120" | xrdb -merge
+
+#######################################
+# DAEMONS
+#######################################
+# sxhkd: hotkey daemon
+pgrep -x sxhkd > /dev/null || sxhkd &
+# picom: compositor for transparency and shadows
+# pgrep -x picom > /dev/null || picom &
+pgrep -x picom > /dev/null || picom --config ~/.config/picom/picom.conf &
+pgrep -x dunst > /dev/null || dunst &
+# polkit agent: GUI password prompts for privileged actions (gnome-disks, etc.)
+pgrep -f polkit-gnome-authentication-agent-1 > /dev/null || /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
+#######################################
+# MONITORS (XRANDR)
+#######################################
+# Important: do NOT use `xrandr --auto`
+# Run your monitors.sh with fixed positions and no overlap
+~/.config/bspwm/monitors.sh
+
+# Give X a moment to apply the layout
+sleep 1
+
+#######################################
+# FONT / UI SCALING FOR eDP
+#######################################
+# Only if a HiDPI eDP laptop screen exists
+if xrandr | grep "eDP connected"; then
+    # GTK apps (Firefox, Nautilus, etc.)
+    # Makes text and UI slightly larger without losing sharpness
+    gsettings set org.gnome.desktop.interface text-scaling-factor 1.3
+
+    # QT apps (Telegram, KeePassXC, etc.)
+    # Multiplicative scaling for HiDPI
+    export QT_SCALE_FACTOR=1.25
+    export QT_AUTO_SCREEN_SCALE_FACTOR=0
+fi
+
+#######################################
+# WALLPAPER
+#######################################
+# Same wallpaper for all monitors
+feh --bg-fill ~/Pictures/wallpapers/laravel-watermark.png
+
+#######################################
+# KEYBOARD
+#######################################
+# Spanish layout with Catalan variant
+setxkbmap -layout es -variant cat &
+
+#######################################
+# DESKTOPS PER MONITOR
+#######################################
+# Assign desktop names to each monitor
+bspc query -M --names | while read m; do
+    case "$m" in
+        eDP)
+            bspc monitor "$m" -d 5 6 7
+            ;;
+        HDMI-A-0)
+            bspc monitor "$m" -d 2 3 4
+            ;;
+        DisplayPort-0)
+            bspc monitor "$m" -d 1
+            ;;
+    esac
+done
+
+#######################################
+# BSPWM VISUAL CONFIGURATION
+#######################################
+bspc config border_width         3               # Width of window borders
+bspc config window_gap           10              # Space between windows
+
+# Paddings are runtime state bspwm recomputes from _NET_WM_STRUT_PARTIAL and
+# never clears on its own — stale geometry leaves phantom gaps (eDP had a dead
+# 30px bottom reserved by nothing). Zero all four on every monitor here; polybar
+# launches later and re-adds its own top strut.
+bspc query -M --names | while read m; do
+    for side in top bottom left right; do
+        bspc config -m "$m" ${side}_padding 0
+    done
+done
+
+# Catppuccin Mocha colors
+bspc config focused_border_color "#cba6f7"   # mauve (focus principal)
+bspc config active_border_color  "#89b4fa"   # blue (windows actives)
+bspc config normal_border_color  "#313244"   # surface0 (background border)
+bspc config presel_feedback_color "#f5c2e7"  # pink (preselection)
+
+#######################################
+# BSPWM BEHAVIOR
+#######################################
+bspc config focus_follows_pointer true          # Focus follows the mouse pointer
+bspc config remove_disabled_monitors true       # Removes disconnected monitors
+bspc config merge_overlapping_monitors false   # Avoid black bars / overlapping
+
+#######################################
+# MOUSE (MOVE / RESIZE)
+#######################################
+bspc config pointer_modifier super              # Modifier key for moving/resizing
+bspc config pointer_action1 move               # Left click + super = move
+bspc config pointer_action2 resize_side       # Middle click + super = side resize
+bspc config pointer_action3 resize_corner     # Right click + super = corner resize
+
+#######################################
+# OPENDECK
+#######################################
+# Launch Opendeck (--hide: start to tray, no GUI window)
+opendeck --hide &
+
+#######################################
+# PHPSTORM RULE
+#######################################
+# Always start PhpStorm tiled and follow focus
+# bspc rule -a jetbrains-phpstorm state=tiled follow=on
+bspc rule -a jetbrains-phpstorm:* state=floating
+
+#######################################
+# POLYBAR
+#######################################
+# Launch Polybar at BSPWM startup
+~/.config/polybar/launch.sh &
+
+#######################################
+# HANDY / VIBE TYPER (speech-to-text)
+#######################################
+pgrep -x handy >/dev/null || handy --start-hidden &
+
+bspc rule -a "*:*:vibe-typer*" state=floating layer=above sticky=on
+
+# Floating centered btop popup (polybar CPU click -> scripts/btop-float.sh)
+bspc rule -a btop-float state=floating layer=above center=on
+

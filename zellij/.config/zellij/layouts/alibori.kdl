@@ -1,0 +1,35 @@
+layout {
+    pane
+    pane size=1 borderless=true {
+        plugin location="file:~/.config/zellij/plugins/zjstatus.wasm" {
+            format_left   "{mode}{tabs}"
+            format_center ""
+            format_right  ""
+            format_space  "#[bg=default]"
+            border_enabled "false"
+            hide_frame_for_single_pane "true"
+
+            // mauve mode tag, transparent bg, UPPERCASE per-mode labels
+            mode_normal        "#[fg=#cba6f7,bold] NORMAL "
+            mode_locked        "#[fg=#6c7086,bold] LOCKED "
+            mode_resize        "#[fg=#f9e2af,bold] RESIZE "
+            mode_pane          "#[fg=#89b4fa,bold] PANE "
+            mode_tab           "#[fg=#94e2d5,bold] TAB "
+            mode_scroll        "#[fg=#fab387,bold] SCROLL "
+            mode_enter_search  "#[fg=#fab387,bold] SEARCH "
+            mode_search        "#[fg=#fab387,bold] SEARCH "
+            mode_rename_tab    "#[fg=#94e2d5,bold] RENAME-TAB "
+            mode_rename_pane   "#[fg=#89b4fa,bold] RENAME-PANE "
+            mode_session       "#[fg=#cba6f7,bold] SESSION "
+            mode_move          "#[fg=#f38ba8,bold] MOVE "
+            mode_prompt        "#[fg=#a6e3a1,bold] PROMPT "
+            mode_tmux          "#[fg=#fab387,bold] TMUX "
+
+            // inactive tab: dim grey text, no background
+            tab_normal    "#[fg=#6c7086,bg=default] {name} "
+            // active tab: mauve powerline pill with arrows, dark text
+            tab_active    "#[fg=#cba6f7,bg=default]#[fg=#1e1e2e,bg=#cba6f7,bold] {name} #[fg=#cba6f7,bg=default]"
+            tab_separator "#[bg=default] "
+        }
+    }
+}

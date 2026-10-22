@@ -1,0 +1,28 @@
+# Secrets / private local settings
+.env
+*.env
+!*.env.example
+!.env.example
+
+# Backups
+*.bak
+*.bak.*
+backup-*/
+*.orig
+
+# Editor swap / temp files
+*.swp
+*.swo
+*.swn
+*~
+.netrwhist
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Personal notes
+nvim/.config/nvim/todo.txt
+
+# Third-party binary, downloaded at install (see README)
+zellij/.config/zellij/plugins/*.wasm
