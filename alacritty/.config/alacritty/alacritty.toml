@@ -34,7 +34,7 @@ chars = "\u001B\r"
 
 [general]
 import = [
-  "~/.config/alacritty/themes/themes/catppuccin_mocha.toml"
+  "~/.cache/wal/colors-alacritty.toml"
 ]
 
 [terminal]
