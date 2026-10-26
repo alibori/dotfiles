@@ -8,6 +8,7 @@ My Linux desktop config: bspwm + sxhkd + polybar, Alacritty, Zellij and Neovim. 
 | `sxhkd`     | Keybindings                                                         |
 | `polybar`   | Status bar + scripts (Wi-Fi, VPN, battery, power menu, Claude usage) |
 | `alacritty` | Terminal; themes from [alacritty-theme](https://github.com/alacritty/alacritty-theme) (submodule) |
+| `picom`     | Compositor: transparency, dual_kawase blur, rounded corners, shadows |
 | `zellij`    | Terminal multiplexer, custom layout with [zjstatus](https://github.com/dj95/zjstatus) |
 | `nvim`      | Neovim config on [lazy.nvim](https://github.com/folke/lazy.nvim), PHP/Laravel focused |
 
@@ -18,7 +19,7 @@ Each top-level folder is a [GNU Stow](https://www.gnu.org/software/stow/) packag
 ```sh
 git clone --recurse-submodules https://github.com/alibori/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-stow bspwm sxhkd polybar alacritty zellij nvim
+stow bspwm sxhkd polybar alacritty zellij nvim picom
 
 # zjstatus plugin for the zellij layout (not committed)
 mkdir -p ~/.config/zellij/plugins
@@ -47,7 +48,7 @@ cp polybar/.config/polybar/.env.example polybar/.config/polybar/.env
 ## Notes
 
 - `bspwm/monitors.sh` is tied to my monitor setup; edit outputs/modes for yours.
-- `bspwmrc` expects a picom config at `~/.config/picom/picom.conf` and a wallpaper under `~/Pictures/wallpapers/` (not in this repo).
+- `bspwmrc` expects a wallpaper under `~/Pictures/wallpapers/` (not in this repo).
 
 ## License
 
