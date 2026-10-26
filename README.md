@@ -10,6 +10,7 @@ My Linux desktop config: bspwm + sxhkd + polybar, Alacritty, Zellij and Neovim. 
 | `alacritty` | Terminal; themes from [alacritty-theme](https://github.com/alacritty/alacritty-theme) (submodule) |
 | `picom`     | Compositor: transparency, dual_kawase blur, rounded corners, shadows |
 | `zellij`    | Terminal multiplexer, custom layout with [zjstatus](https://github.com/dj95/zjstatus) |
+| `herdr`     | [Herdr](https://herdr.dev) agent workspace; `terminal` theme follows pywal |
 | `nvim`      | Neovim config on [lazy.nvim](https://github.com/folke/lazy.nvim), PHP/Laravel focused |
 
 ## Install
@@ -19,7 +20,7 @@ Each top-level folder is a [GNU Stow](https://www.gnu.org/software/stow/) packag
 ```sh
 git clone --recurse-submodules https://github.com/alibori/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-stow bspwm sxhkd polybar alacritty zellij nvim picom
+stow bspwm sxhkd polybar alacritty zellij nvim picom herdr
 
 # zjstatus plugin for the zellij layout (not committed)
 mkdir -p ~/.config/zellij/plugins

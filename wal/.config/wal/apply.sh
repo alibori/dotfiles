@@ -21,3 +21,7 @@ dunst &
 
 # polybar re-reads colors only on start; launch.sh kills the old bars
 "$HOME/.config/polybar/launch.sh" &
+
+# herdr uses the "terminal" theme; SIGWINCH makes the client re-read the
+# palette wal just pushed. -fx skips the `.../herdr server` process.
+pkill -WINCH -fx herdr

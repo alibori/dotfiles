@@ -1,0 +1,15 @@
+onboarding = false
+
+[ui.toast]
+delivery = "system"
+
+[theme]
+name = "terminal"  # follow the pywal ANSI palette (see wal/apply.sh)
+auto_switch = false
+
+[keys]
+next_agent = "prefix+ctrl+shift+n"
+previous_agent = "prefix+ctrl+shift+p"
+
+[ui.sound]
+enabled = false
