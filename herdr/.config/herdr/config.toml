@@ -7,6 +7,15 @@ delivery = "system"
 name = "terminal"  # follow the pywal ANSI palette (see wal/apply.sh)
 auto_switch = false
 
+[theme.custom]
+active_row_bg = "reset"  # terminal theme uses DarkGray (wal color8) here
+# agent state colors: keep herdr defaults (catppuccin mocha), not wal ANSI
+yellow = "#f9e2af"  # working
+red = "#f38ba8"     # blocked
+teal = "#94e2d5"    # done
+green = "#a6e3a1"   # idle
+blue = "#89b4fa"    # done (mobile)
+
 [keys]
 next_agent = "prefix+ctrl+shift+n"
 previous_agent = "prefix+ctrl+shift+p"
