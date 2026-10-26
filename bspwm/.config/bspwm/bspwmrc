@@ -12,6 +12,22 @@ wmname LG3D
 echo "Xft.dpi: 120" | xrdb -merge
 
 #######################################
+# FONT / UI SCALING FOR eDP
+#######################################
+# Only if a HiDPI eDP laptop screen exists. Must run before sxhkd starts so
+# apps launched from hotkeys inherit the QT_* exports.
+if xrandr | grep -q "eDP connected"; then
+    # GTK apps (Firefox, Nautilus, etc.)
+    # Makes text and UI slightly larger without losing sharpness
+    gsettings set org.gnome.desktop.interface text-scaling-factor 1.3
+
+    # QT apps (Telegram, KeePassXC, etc.)
+    # Multiplicative scaling for HiDPI
+    export QT_SCALE_FACTOR=1.25
+    export QT_AUTO_SCREEN_SCALE_FACTOR=0
+fi
+
+#######################################
 # DAEMONS
 #######################################
 # sxhkd: hotkey daemon
@@ -34,21 +50,6 @@ pgrep -f polkit-gnome-authentication-agent-1 > /dev/null || /usr/lib/policykit-1
 sleep 1
 
 #######################################
-# FONT / UI SCALING FOR eDP
-#######################################
-# Only if a HiDPI eDP laptop screen exists
-if xrandr | grep "eDP connected"; then
-    # GTK apps (Firefox, Nautilus, etc.)
-    # Makes text and UI slightly larger without losing sharpness
-    gsettings set org.gnome.desktop.interface text-scaling-factor 1.3
-
-    # QT apps (Telegram, KeePassXC, etc.)
-    # Multiplicative scaling for HiDPI
-    export QT_SCALE_FACTOR=1.25
-    export QT_AUTO_SCREEN_SCALE_FACTOR=0
-fi
-
-#######################################
 # KEYBOARD
 #######################################
 # Spanish layout with Catalan variant
@@ -61,7 +62,12 @@ setxkbmap -layout es -variant cat &
 bspc query -M --names | while read m; do
     case "$m" in
         eDP)
-            bspc monitor "$m" -d 5 6 7
+            # Laptop alone: take every desktop so super+{1-7} all land somewhere
+            if [ "$(xrandr | grep -c ' connected')" -eq 1 ]; then
+                bspc monitor "$m" -d 1 2 3 4 5 6 7
+            else
+                bspc monitor "$m" -d 5 6 7
+            fi
             ;;
         HDMI-A-0)
             bspc monitor "$m" -d 2 3 4
