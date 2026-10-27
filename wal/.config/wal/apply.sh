@@ -35,3 +35,9 @@ pgrep -af 'python[0-9.]* -m qutebrowser' | while read -r _ cmd; do
         *) qutebrowser :config-source ;;
     esac
 done >/dev/null 2>&1 &
+
+# nvim maps colors.json onto catppuccin in plugins/theme.lua; :WalReload in
+# every running instance (default servers live in $XDG_RUNTIME_DIR).
+for s in "${XDG_RUNTIME_DIR:-/tmp}"/nvim.*.0; do
+    [ -S "$s" ] && nvim --server "$s" --remote-send '<Cmd>WalReload<CR>'
+done >/dev/null 2>&1 &

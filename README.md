@@ -7,18 +7,18 @@ My Linux desktop config: bspwm + sxhkd + polybar, Alacritty, Zellij and Neovim. 
 | `bspwm`     | Tiling WM, multi-monitor layout (`monitors.sh`), autostart          |
 | `sxhkd`     | Keybindings                                                         |
 | `polybar`   | Status bar + scripts (Wi-Fi, VPN, battery, power menu, Claude usage) |
-| `alacritty` | Terminal; themes from [alacritty-theme](https://github.com/alacritty/alacritty-theme) (submodule) |
+| `alacritty` | Terminal; colors follow pywal (imports `~/.cache/wal/colors-alacritty.toml`) |
 | `picom`     | Compositor: transparency, dual_kawase blur, rounded corners, shadows |
 | `zellij`    | Terminal multiplexer, custom layout with [zjstatus](https://github.com/dj95/zjstatus) |
 | `herdr`     | [Herdr](https://herdr.dev) agent workspace; `terminal` theme follows pywal |
-| `nvim`      | Neovim config on [lazy.nvim](https://github.com/folke/lazy.nvim), PHP/Laravel focused |
+| `nvim`      | Neovim config on [lazy.nvim](https://github.com/folke/lazy.nvim), PHP/Laravel focused; catppuccin recolored from pywal |
 
 ## Install
 
 Each top-level folder is a [GNU Stow](https://www.gnu.org/software/stow/) package mirroring `$HOME`.
 
 ```sh
-git clone --recurse-submodules https://github.com/alibori/dotfiles.git ~/dotfiles
+git clone https://github.com/alibori/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 stow bspwm sxhkd polybar alacritty zellij nvim picom herdr qutebrowser
 
@@ -27,8 +27,6 @@ mkdir -p ~/.config/zellij/plugins
 curl -L -o ~/.config/zellij/plugins/zjstatus.wasm \
   https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
 ```
-
-Already cloned without submodules? `git submodule update --init`.
 
 ## Dependencies
 
