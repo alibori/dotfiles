@@ -5,6 +5,7 @@ My Linux desktop config: bspwm + sxhkd + polybar, Alacritty, Zellij and Neovim. 
 | Package     | What                                                                |
 |-------------|---------------------------------------------------------------------|
 | `bspwm`     | Tiling WM, multi-monitor layout (`monitors.sh`), autostart          |
+| `wal`       | pywal templates (polybar, dunst, rofi) + `apply.sh` hook that pushes each new palette to running apps |
 | `sxhkd`     | Keybindings                                                         |
 | `polybar`   | Status bar + scripts (Wi-Fi, VPN, battery, power menu, Claude usage) |
 | `alacritty` | Terminal; colors follow pywal (imports `~/.cache/wal/colors-alacritty.toml`) |
@@ -13,6 +14,7 @@ My Linux desktop config: bspwm + sxhkd + polybar, Alacritty, Zellij and Neovim. 
 | `herdr`     | [Herdr](https://herdr.dev) agent workspace; `terminal` theme follows pywal |
 | `nvim`      | Neovim config on [lazy.nvim](https://github.com/folke/lazy.nvim), PHP/Laravel focused; catppuccin recolored from pywal |
 | `starship`  | Prompt; palette names mapped to ANSI so colors follow pywal         |
+| `rofi`      | Launcher; `wal` theme imports `~/.cache/wal/colors-rofi.rasi` (template in `wal`) |
 
 ## Install
 
@@ -21,7 +23,7 @@ Each top-level folder is a [GNU Stow](https://www.gnu.org/software/stow/) packag
 ```sh
 git clone https://github.com/alibori/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-stow bspwm sxhkd polybar alacritty zellij nvim picom herdr qutebrowser starship
+stow wal bspwm sxhkd polybar alacritty zellij nvim picom herdr qutebrowser starship rofi
 
 # zjstatus plugin for the zellij layout (not committed)
 mkdir -p ~/.config/zellij/plugins

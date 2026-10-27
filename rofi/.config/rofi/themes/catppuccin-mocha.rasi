@@ -1,0 +1,71 @@
+// Catppuccin Mocha — Omarchy (Walker) style
+* {
+    bg:        #1e1e2e;
+    bg-trans:  #1e1e2ef2;   // base @ 0.95 alpha
+    bg-alt:    #313244;
+    fg:        #cdd6f4;
+    accent:    #cba6f7;      // mauve
+    sel-bg:    #cdd6f412;    // ~7% translucent foreground
+
+    background-color: transparent;
+    text-color:       @fg;
+    font:             "monospace 13";
+}
+
+window {
+    background-color: @bg-trans;
+    border:           2px solid;
+    border-color:     @fg;
+    border-radius:    0;
+    width:            640px;
+    padding:          20px;
+}
+
+mainbox {
+    spacing:  10px;
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    background-color: @bg;
+    padding:          10px;
+    text-color:       @fg;
+    children:         [ prompt, entry ];
+}
+
+prompt {
+    text-color: @accent;
+    padding:    0 8px 0 0;
+}
+
+entry {
+    text-color:  @fg;
+    placeholder: "Search…";
+}
+
+listview {
+    spacing: 0;
+    lines:   8;
+    scrollbar: false;
+}
+
+element {
+    padding:    14px;
+    text-color: @fg;
+}
+
+element selected {
+    background-color: @sel-bg;
+    text-color:       @accent;
+}
+
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+element-icon {
+    background-color: transparent;
+    size:             1.1em;
+    padding:          0 10px 0 0;
+}

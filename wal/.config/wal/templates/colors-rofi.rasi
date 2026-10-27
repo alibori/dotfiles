@@ -1,0 +1,10 @@
+/* pywal template — rendered to ~/.cache/wal/colors-rofi.rasi and imported by
+ * ~/.config/rofi/themes/wal.rasi. Only colors; braces are doubled for format(). */
+* {{
+    bg:       {background};
+    bg-trans: #{background.strip}f2;
+    bg-alt:   {color8};
+    fg:       {foreground};
+    accent:   {color5};
+    sel-bg:   #{foreground.strip}12;
+}}
