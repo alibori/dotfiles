@@ -11,6 +11,9 @@ wmname LG3D
 # Adjusts font and UI size on non-HiDPI screens
 echo "Xft.dpi: 120" | xrdb -merge
 
+# Cursor theme
+xrdb -merge ~/.Xresources
+
 #######################################
 # FONT / UI SCALING FOR eDP
 #######################################
