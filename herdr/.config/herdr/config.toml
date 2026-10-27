@@ -8,7 +8,8 @@ name = "terminal"  # follow the pywal ANSI palette (see wal/apply.sh)
 auto_switch = false
 
 [theme.custom]
-active_row_bg = "reset"  # terminal theme uses DarkGray (wal color8) here
+active_row_bg = "#353f54"  # subtle lift over wal bg (#0b1019); marks active row
+selection_bg = "#353f54"
 # agent state colors: keep herdr defaults (catppuccin mocha), not wal ANSI
 yellow = "#f9e2af"  # working
 red = "#f38ba8"     # blocked
