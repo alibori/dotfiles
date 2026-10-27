@@ -25,3 +25,13 @@ dunst &
 # herdr uses the "terminal" theme; SIGWINCH makes the client re-read the
 # palette wal just pushed. -fx skips the `.../herdr server` process.
 pkill -WINCH -fx herdr
+
+# qutebrowser reads ~/.cache/wal/colors.json in config.py. Reload each running
+# instance through its own --basedir (profiles); calling qutebrowser with no
+# instance running would open a new window instead.
+pgrep -af 'python[0-9.]* -m qutebrowser' | while read -r _ cmd; do
+    case "$cmd" in
+        *--basedir\ *) b=${cmd#*--basedir }; qutebrowser --basedir "${b%% *}" :config-source ;;
+        *) qutebrowser :config-source ;;
+    esac
+done >/dev/null 2>&1 &

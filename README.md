@@ -20,7 +20,7 @@ Each top-level folder is a [GNU Stow](https://www.gnu.org/software/stow/) packag
 ```sh
 git clone --recurse-submodules https://github.com/alibori/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-stow bspwm sxhkd polybar alacritty zellij nvim picom herdr
+stow bspwm sxhkd polybar alacritty zellij nvim picom herdr qutebrowser
 
 # zjstatus plugin for the zellij layout (not committed)
 mkdir -p ~/.config/zellij/plugins
