@@ -1,6 +1,6 @@
 # dotfiles
 
-My Linux desktop config: bspwm + sxhkd + polybar, Alacritty, Zellij and Neovim. Catppuccin Mocha everywhere.
+My Linux desktop config: bspwm + sxhkd + polybar, Alacritty, Zellij and Neovim. Colors follow pywal.
 
 | Package     | What                                                                |
 |-------------|---------------------------------------------------------------------|
@@ -12,6 +12,7 @@ My Linux desktop config: bspwm + sxhkd + polybar, Alacritty, Zellij and Neovim. 
 | `zellij`    | Terminal multiplexer, custom layout with [zjstatus](https://github.com/dj95/zjstatus) |
 | `herdr`     | [Herdr](https://herdr.dev) agent workspace; `terminal` theme follows pywal |
 | `nvim`      | Neovim config on [lazy.nvim](https://github.com/folke/lazy.nvim), PHP/Laravel focused; catppuccin recolored from pywal |
+| `starship`  | Prompt; palette names mapped to ANSI so colors follow pywal         |
 
 ## Install
 
@@ -20,7 +21,7 @@ Each top-level folder is a [GNU Stow](https://www.gnu.org/software/stow/) packag
 ```sh
 git clone https://github.com/alibori/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-stow bspwm sxhkd polybar alacritty zellij nvim picom herdr qutebrowser
+stow bspwm sxhkd polybar alacritty zellij nvim picom herdr qutebrowser starship
 
 # zjstatus plugin for the zellij layout (not committed)
 mkdir -p ~/.config/zellij/plugins
@@ -30,7 +31,7 @@ curl -L -o ~/.config/zellij/plugins/zjstatus.wasm \
 
 ## Dependencies
 
-bspwm, sxhkd, polybar, rofi, picom, dunst, feh, maim, alacritty, zellij, neovim, NetworkManager (`nmcli`), `jq`, `curl`, a Nerd Font.
+bspwm, sxhkd, polybar, rofi, picom, dunst, feh, maim, alacritty, zellij, neovim, starship, NetworkManager (`nmcli`), `jq`, `curl`, a Nerd Font.
 
 ## Local / private config
 

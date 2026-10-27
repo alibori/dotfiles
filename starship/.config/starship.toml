@@ -1,0 +1,107 @@
+# ~/.config/starship.toml
+# Minimal prompt; colors follow pywal via the terminal ANSI palette
+# Requires a Nerd Font for the icons.
+
+"$schema" = "https://starship.rs/config-schema.json"
+
+palette = "wal"
+add_newline = false
+command_timeout = 1000
+
+format = """
+$directory\
+$git_branch\
+$git_status\
+$git_state\
+$nodejs\
+$python\
+$rust\
+$golang\
+$docker_context\
+$cmd_duration\
+$line_break\
+$character"""
+
+[directory]
+style = "bold lavender"
+format = "[$path]($style)[$read_only]($read_only_style) "
+truncation_length = 3
+truncate_to_repo = true
+read_only = " 󰌾"
+read_only_style = "red"
+
+[git_branch]
+symbol = " "
+style = "bold mauve"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "yellow"
+format = "([$all_status$ahead_behind]($style) )"
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?${count}"
+stashed = "${count}"
+modified = "!${count}"
+staged = "+${count}"
+renamed = "»${count}"
+deleted = "✘${count}"
+
+[git_state]
+style = "peach"
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+
+[nodejs]
+symbol = " "
+style = "green"
+format = "[$symbol($version)]($style) "
+detect_files = ["package.json", ".node-version", ".nvmrc"]
+
+[python]
+symbol = " "
+style = "yellow"
+format = '[${symbol}${pyenv_prefix}(${version})( \($virtualenv\))]($style) '
+
+[rust]
+symbol = " "
+style = "peach"
+format = "[$symbol($version)]($style) "
+
+[golang]
+symbol = " "
+style = "sky"
+format = "[$symbol($version)]($style) "
+
+[docker_context]
+symbol = " "
+style = "blue"
+format = "[$symbol$context]($style) "
+only_with_files = true
+
+[cmd_duration]
+min_time = 1500
+style = "overlay1"
+format = "[$duration]($style) "
+
+[character]
+success_symbol = "[❯](bold green)"
+error_symbol = "[❯](bold red)"
+vimcmd_symbol = "[❮](bold mauve)"
+vimcmd_replace_one_symbol = "[❮](bold peach)"
+vimcmd_replace_symbol = "[❮](bold peach)"
+vimcmd_visual_symbol = "[❮](bold yellow)"
+
+# Names map to ANSI slots, which alacritty takes from pywal. red/yellow stay
+# catppuccin so errors/warnings keep contrast (same as nvim).
+[palettes.wal]
+lavender = "blue"
+mauve = "purple"
+blue = "blue"
+sky = "cyan"
+green = "green"
+peach = "bright-red"
+overlay1 = "bright-black"
+red = "#f38ba8"
+yellow = "#f9e2af"
