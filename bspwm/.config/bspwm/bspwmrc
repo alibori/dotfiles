@@ -145,3 +145,7 @@ bspc rule -a "*:*:vibe-typer*" state=floating layer=above sticky=on
 # Floating centered btop popup (polybar CPU click -> scripts/btop-float.sh)
 bspc rule -a btop-float state=floating layer=above center=on
 
+
+# Auto-lock after 20 min idle and before suspend (dm-tool lock -> lightdm greeter)
+xset s 1200 1200
+pgrep -x xss-lock >/dev/null || xss-lock -- dm-tool lock &
