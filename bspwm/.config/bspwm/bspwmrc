@@ -154,4 +154,5 @@ bspc rule -a btop-float state=floating layer=above center=on
 
 # Auto-lock after 20 min idle and before suspend (dm-tool lock -> lightdm greeter)
 xset s 1200 1200
-pgrep -x xss-lock >/dev/null || xss-lock -- dm-tool lock &
+# dm-tool returns instantly; block until session active again so xss-lock does not stack locks
+pgrep -x xss-lock >/dev/null || xss-lock -- sh -c 'dm-tool lock; sleep 2; while [ "$(loginctl show-session "$XDG_SESSION_ID" -p Active --value)" = no ]; do sleep 1; done' &

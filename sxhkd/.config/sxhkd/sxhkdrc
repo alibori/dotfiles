@@ -18,7 +18,7 @@ super + Escape
 
 # lock screen (switches to lightdm greeter)
 super + shift + Escape
-	dm-tool lock
+	xset s activate
 
 #
 # bspwm hotkeys
