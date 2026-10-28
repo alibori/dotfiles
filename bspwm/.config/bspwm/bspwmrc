@@ -13,6 +13,9 @@ echo "Xft.dpi: 120" | xrdb -merge
 
 # Cursor theme
 xrdb -merge ~/.Xresources
+# Root window keeps whatever cursor the lightdm greeter left (Breeze_Snow) or
+# the X default; set the classic X cursor explicitly so it shows on every start.
+xsetroot -cursor_name X_cursor
 
 #######################################
 # FONT / UI SCALING FOR eDP
