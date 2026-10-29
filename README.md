@@ -13,6 +13,7 @@ My Linux desktop config: bspwm + sxhkd + polybar, Alacritty, Zellij and Neovim. 
 | `zellij`    | Terminal multiplexer, custom layout with [zjstatus](https://github.com/dj95/zjstatus) |
 | `herdr`     | [Herdr](https://herdr.dev) agent workspace; `terminal` theme follows pywal |
 | `nvim`      | Neovim config on [lazy.nvim](https://github.com/folke/lazy.nvim), PHP/Laravel focused; catppuccin recolored from pywal |
+| `vim`       | Plain Vim on [vim-plug](https://github.com/junegunn/vim-plug); [wal.vim](https://github.com/dylanaraps/wal.vim) colorscheme + airline theme |
 | `starship`  | Prompt; palette names mapped to ANSI so colors follow pywal         |
 | `rofi`      | Launcher; `wal` theme imports `~/.cache/wal/colors-rofi.rasi` (template in `wal`) |
 | `tealdeer`  | `tldr` client; pages auto-update                                  |
@@ -24,12 +25,17 @@ Each top-level folder is a [GNU Stow](https://www.gnu.org/software/stow/) packag
 ```sh
 git clone https://github.com/alibori/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-stow wal bspwm sxhkd polybar alacritty zellij nvim picom herdr qutebrowser starship rofi tealdeer
+stow wal bspwm sxhkd polybar alacritty zellij nvim picom herdr qutebrowser starship rofi tealdeer vim
 
 # zjstatus plugin for the zellij layout (not committed)
 mkdir -p ~/.config/zellij/plugins
 curl -L -o ~/.config/zellij/plugins/zjstatus.wasm \
   https://github.com/dj95/zjstatus/releases/latest/download/zjstatus.wasm
+
+# vim-plug (not committed), then install vim plugins
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+vim +PlugInstall +qa
 ```
 
 ## Dependencies
