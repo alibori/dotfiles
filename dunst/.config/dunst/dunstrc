@@ -1,5 +1,5 @@
 # ~/.config/dunst/dunstrc
-# Theme: Catppuccin Mocha
+# Theme: pywal (colors overridden by dunstrc.d/99-wal.conf)
 # WM: bspwm
 
 [global]
@@ -79,7 +79,9 @@
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
 
-    ### Catppuccin Mocha ###
+    ### Fallback colors (Catppuccin Mocha) ###
+    # Hex colors below apply only until wal runs; dunstrc.d/99-wal.conf
+    # overrides every color key (see wal/.config/wal/templates/dunst.conf).
 
     separator_color = frame
 
