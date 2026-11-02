@@ -1,6 +1,8 @@
 set number
 set laststatus=2
 set wrap
+set linebreak
+set breakindent
 set encoding=utf-8
 
 " Plug file

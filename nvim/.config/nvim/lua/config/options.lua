@@ -13,7 +13,9 @@ opt.shiftwidth = 4
 opt.expandtab = true
 opt.smartindent = true
 
-opt.wrap = false
+opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.breakindent = true
 
 opt.termguicolors = true
 opt.cursorline = true
