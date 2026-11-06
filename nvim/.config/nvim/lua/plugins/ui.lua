@@ -28,6 +28,7 @@ return {
                 { "<leader>r", group = "Refactor/Rename" },
                 { "<leader>s", group = "Split/Harpoon" },
                 { "<leader>c", group = "Code/Format" },
+                { "gs", group = "Surround" },
             })
         end,
     },
@@ -79,6 +80,39 @@ return {
         "stevearc/dressing.nvim",
         event = "VeryLazy",
         opts = {},
+    },
+
+    {
+        "j-hui/fidget.nvim",
+        event = "LspAttach",
+        opts = {},
+    },
+
+    {
+        "nvim-mini/mini.surround",
+        event = "VeryLazy",
+        opts = {
+            -- gs prefix: `s` belongs to flash.nvim
+            mappings = {
+                add = "gsa",
+                delete = "gsd",
+                find = "gsf",
+                find_left = "gsF",
+                highlight = "gsh",
+                replace = "gsr",
+                update_n_lines = "gsn",
+            },
+        },
+    },
+
+    {
+        "folke/flash.nvim",
+        event = "VeryLazy",
+        opts = {},
+        keys = {
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+            { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash treesitter" },
+        },
     },
 }
 
