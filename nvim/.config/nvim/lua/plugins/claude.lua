@@ -4,7 +4,12 @@ return {
 
         dependencies = { "folke/snacks.nvim" },
 
-        config = true,
+        opts = {
+            terminal = {
+                -- Drop Snacks' NormalFloat mapping: use Normal/NormalNC like any split
+                snacks_win_opts = { wo = { winhighlight = "" } },
+            },
+        },
 
         cmd = {
             "ClaudeCode",

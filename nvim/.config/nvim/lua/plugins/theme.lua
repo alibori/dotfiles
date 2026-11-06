@@ -36,6 +36,7 @@ return {
                     flavour = "mocha",
                     color_overrides = { mocha = wal_palette() },
                     transparent_background = true,
+                    term_colors = true,
 
                     -- Dim unfocused splits so the active window stands out
                     dim_inactive = { enabled = true, percentage = 0.1 },
