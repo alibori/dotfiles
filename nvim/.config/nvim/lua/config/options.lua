@@ -20,6 +20,7 @@ vim.opt.breakindent = true
 opt.termguicolors = true
 opt.cursorline = true
 opt.signcolumn = "yes"
+opt.cmdheight = 0
 
 opt.ignorecase = true
 opt.smartcase = true
