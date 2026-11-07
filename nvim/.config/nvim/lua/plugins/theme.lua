@@ -67,6 +67,9 @@ return {
                             ["@tag.blade"] = { fg = c.pink },
                             -- Visible separator between splits
                             WinSeparator = { fg = c.surface1 },
+                            -- Readable line numbers (default surface1 too dim on wal palettes)
+                            LineNr = { fg = c.overlay1 },
+                            CursorLineNr = { fg = c.text, style = { "bold" } },
                         }
                     end,
                 })

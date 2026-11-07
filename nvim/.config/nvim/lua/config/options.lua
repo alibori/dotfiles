@@ -6,7 +6,7 @@ vim.g.maplocalleader = " "
 vim.opt.clipboard:append("unnamedplus")
 
 opt.number = true
-opt.relativenumber = false
+opt.relativenumber = true
 
 opt.tabstop = 4
 opt.shiftwidth = 4
