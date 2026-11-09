@@ -36,20 +36,18 @@ listview {
     layout:  horizontal;
     lines:   100;
     spacing: 4px;
+    // Horizontal listviews pin one-line-tall elements to the top, so center
+    // them by hand: (43px window - 19px element) / 2. Retune if the font changes.
+    padding: 12px 0 0 0;
 }
 
-// Same look as polybar's active workspace. Every element reserves the border
-// so text doesn't shift when selected.
 element {
-    padding:      0 8px;
-    border:       0 0 3px 0;
-    border-color: transparent;
+    padding: 0 8px;
 }
 
 element selected {
     background-color: transparent;
     text-color:       @bar-accent;
-    border-color:     @bar-accent;
 }
 
 element-text {
