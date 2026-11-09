@@ -1,0 +1,57 @@
+// One-line launcher drawn over polybar's [bar/main]. Colors come from wal.rasi.
+@import "~/.config/rofi/themes/wal.rasi"
+
+* {
+    font: "JetBrainsMono Nerd Font Bold 10";
+}
+
+window {
+    location: north;
+    anchor:   north;
+    width:    100%;
+    // polybar height: 26pt at dpi 120 = 43px
+    height:   43px;
+    border:   0;
+    padding:  0 16px;
+    background-color: @bar-bg;
+    children: [ horibox ];
+}
+
+horibox {
+    orientation: horizontal;
+    spacing:     12px;
+    children:    [ prompt, entry, listview ];
+}
+
+prompt, entry {
+    vertical-align: 0.5;
+}
+
+entry {
+    expand: false;
+    width:  14em;
+}
+
+listview {
+    layout:  horizontal;
+    lines:   100;
+    spacing: 4px;
+}
+
+// Same look as polybar's active workspace. Every element reserves the border
+// so text doesn't shift when selected.
+element {
+    padding:      0 8px;
+    border:       0 0 3px 0;
+    border-color: transparent;
+}
+
+element selected {
+    background-color: transparent;
+    text-color:       @bar-accent;
+    border-color:     @bar-accent;
+}
+
+element-text {
+    vertical-align: 0.5;
+}

@@ -7,4 +7,6 @@
     fg:       {foreground};
     accent:   {color5};
     sel-bg:   #{foreground.strip}12;
+    bar-bg:     #{color0.strip}cc;
+    bar-accent: {color2};
 }}

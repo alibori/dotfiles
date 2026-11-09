@@ -10,7 +10,7 @@ super + Return
 #  ctrl + space
 	# dmenu_run
 ctrl + space
-	rofi -show combi -modes combi,drun,run,ssh -show-icons -b
+	rofi -show combi -modes combi,drun,run,ssh -show-icons -theme ~/.config/rofi/themes/bar.rasi -m eDP
 
 # make sxhkd reload its configuration files:
 super + Escape
