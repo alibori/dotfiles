@@ -13,7 +13,6 @@ return {
       markdown = true,
       gitcommit = true,
       yaml = true,
-      DressingInput = false,
     }
   end,
 

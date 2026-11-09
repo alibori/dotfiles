@@ -50,7 +50,7 @@ return {
         keys = {
             { "]t", function() require("todo-comments").jump_next() end, desc = "Next todo" },
             { "[t", function() require("todo-comments").jump_prev() end, desc = "Previous todo" },
-            { "<leader>ft", "<cmd>TodoTelescope<CR>", desc = "Search todos" },
+            { "<leader>ft", function() Snacks.picker.todo_comments() end, desc = "Search todos" },
         },
         opts = {},
     },
@@ -63,22 +63,6 @@ return {
             { "<leader><leader>t", "<cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics (Trouble)" },
             { "<leader><leader>f", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer diagnostics (Trouble)" },
         },
-        opts = {},
-    },
-
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        event = { "BufReadPre", "BufNewFile" },
-        opts = {
-            indent = { char = "│" },
-            scope = { enabled = true },
-        },
-    },
-
-    {
-        "stevearc/dressing.nvim",
-        event = "VeryLazy",
         opts = {},
     },
 

@@ -1,7 +1,7 @@
 return {
     "adalessa/laravel.nvim",
     dependencies = {
-        "nvim-telescope/telescope.nvim",
+        "folke/snacks.nvim",
         "tpope/vim-dotenv",
         "MunifTanjim/nui.nvim",
         "kevinhwang91/promise-async",
@@ -42,7 +42,7 @@ return {
             features = {
                 pickers = {
                     enable = true,
-                    provider = "telescope",
+                    provider = "snacks",
                 },
             },
         })

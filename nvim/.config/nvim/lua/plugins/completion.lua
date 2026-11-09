@@ -13,7 +13,7 @@ return {
         opts = {
             -- No completion in vim.ui.input prompts (create/rename/delete confirm)
             enabled = function()
-                return vim.bo.filetype ~= "DressingInput"
+                return vim.bo.buftype ~= "prompt"
             end,
 
             keymap = {
