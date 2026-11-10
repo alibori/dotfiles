@@ -20,7 +20,9 @@ lines=$(nmcli -t -f NAME,TYPE connection show \
 
 [ -z "$lines" ] && exit 0
 
-choice=$(printf '%s\n' "$lines" | rofi -dmenu -i -p 'vpn' -no-custom)
+choice=$(printf '%s\n' "$lines" | "$HOME/.config/dmenu/dmenu.sh" -i -p 'vpn')
+# dmenu has no -no-custom: drop anything typed that isn't a listed entry
+printf '%s\n' "$lines" | grep -qxF -- "$choice" || exit 0
 [ -z "$choice" ] && exit 0
 
 marker=${choice%% *}
@@ -37,15 +39,15 @@ if [ "$marker" = "●" ]; then
 	notify-send 'VPN' "$name disconnected"
 else
 	# vpn connections may need a password (password-flags 1/2) but polybar has
-	# no tty, and this NM ignores `passwd-file` for openvpn. Prompt via rofi and
+	# no tty, and this NM ignores `passwd-file` for openvpn. Prompt via zenity and
 	# feed `nmcli --ask` through a hidden pty (script -qec) — the only method
 	# that actually delivers the secret. No terminal popup, no secret on disk.
 	type=$(nmcli -t -f connection.type connection show "$name" | cut -d: -f2)
 	pwflags=$(nmcli -t -f vpn.data connection show "$name" \
 		| grep -o 'password-flags = [0-9]' | awk '{print $NF}')
 	if [ "$type" = vpn ] && { [ "$pwflags" = 1 ] || [ "$pwflags" = 2 ]; }; then
-		pass=$(rofi -dmenu -password -p "$name password" < /dev/null)
-		# drop stray CR / leading & trailing blanks from the rofi entry,
+		pass=$(zenity --password --title "$name password" 2>/dev/null)
+		# drop stray CR / leading & trailing blanks from the entry,
 		# but keep spaces inside the password
 		pass=$(printf '%s' "$pass" | tr -d '\r' | sed 's/^[[:blank:]]*//;s/[[:blank:]]*$//')
 		[ -z "$pass" ] && exit 0

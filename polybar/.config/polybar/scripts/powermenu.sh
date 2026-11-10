@@ -1,9 +1,9 @@
 #!/bin/sh
 # Power menu for polybar. Uses only what is already installed:
-# rofi, slock, bspc, systemctl.
+# dmenu (~/.config/dmenu/dmenu.sh), slock, bspc, systemctl.
 
 case "$(printf ' Lock\n󰗽 Logout\n󰒲 Suspend\n Reboot\n⏻ Shutdown' \
-        | rofi -dmenu -i -p 'power' -no-custom -lines 5)" in
+        | "$HOME/.config/dmenu/dmenu.sh" -i -p 'power' -l 5)" in
 	*Lock)     exec slock ;;
 	*Logout)   exec bspc quit ;;
 	*Suspend)  exec systemctl suspend ;;

@@ -22,7 +22,9 @@ lines=$(printf '%s\n' "$list" | awk -F: '
 
 [ -z "$lines" ] && exit 0
 
-choice=$(printf '%s\n' "$lines" | rofi -dmenu -i -p 'wifi' -no-custom)
+choice=$(printf '%s\n' "$lines" | "$HOME/.config/dmenu/dmenu.sh" -i -p 'wifi')
+# dmenu has no -no-custom: drop anything typed that isn't a listed entry
+printf '%s\n' "$lines" | grep -qxF -- "$choice" || exit 0
 [ -z "$choice" ] && exit 0
 
 marker=${choice%% *}
@@ -41,7 +43,7 @@ secured=$(printf '%s\n' "$list" | awk -F: -v s="$ssid" '
 	# profile list to match against. Only prompt if that fails on a secured net.
 	if ! nmcli device wifi connect "$ssid" > /dev/null 2>&1; then
 		[ -z "$secured" ] && { notify-send 'Wi-Fi' "$ssid failed"; exit 1; }
-		pass=$(rofi -dmenu -password -p "$ssid password" < /dev/null)
+		pass=$(zenity --password --title "$ssid password" 2>/dev/null)
 		pass=$(printf '%s' "$pass" | tr -d '\r')
 		[ -z "$pass" ] && exit 0
 		nmcli device wifi connect "$ssid" password "$pass" > /dev/null 2>&1 \

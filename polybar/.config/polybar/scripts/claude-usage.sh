@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Claude Code plan-limit usage for two accounts (personal / work).
-#   claude-usage.sh   toggle rofi popup with both accounts
+#   claude-usage.sh   toggle dmenu popup with both accounts
 #
 # Reads each account's OAuth token from its .credentials.json and never
 # refreshes it: rotating the refresh token here would log Claude Code out.
@@ -45,7 +45,7 @@ rows() {
         (.percent | floor), (.resets_at // "")] | @tsv' "$CACHE/$1.json" 2>/dev/null
 }
 
-pkill -x rofi && exit
+pkill -x dmenu && exit
 for name in personal work; do
     fetch "$name"
     echo "── ${name^} ──"
@@ -57,4 +57,4 @@ for name in personal work; do
         [ -n "$reset" ] && reset="resets $(date -d "$reset" '+%a %H:%M')"
         printf '%-14s %s %3s%%  %s\n' "$label" "$(bar "$pct" 20)" "$pct" "$reset"
     done
-done | rofi -dmenu -no-custom -theme-str 'window {width: 44em;} mainbox {children: [listview];} listview {lines: 8;}' >/dev/null
+done | "$HOME/.config/dmenu/dmenu.sh" -l 8 >/dev/null
