@@ -10,7 +10,7 @@ super + Return
 #  ctrl + space
 	# dmenu_run
 ctrl + space
-	dmenu_path | ~/.config/dmenu/dmenu.sh -p run | ${SHELL:-/bin/sh}
+	dmenu_path | ~/.config/dmenu/dmenu.sh -p run | $SHELL
 
 # make sxhkd reload its configuration files:
 super + Escape
