@@ -18,6 +18,7 @@ My Linux desktop config: bspwm + sxhkd + polybar, Alacritty, Zellij and Neovim. 
 | `dmenu`     | Launcher + polybar menus via `dmenu.sh` wrapper: pywal colors, drawn over polybar on eDP (needs patched dmenu, see below) |
 | `tealdeer`  | `tldr` client; pages auto-update                                  |
 | `dunst`     | Notifications; colors from pywal drop-in (template in `wal`), low battery fixed red |
+| `yazi`      | File manager; default ANSI theme + icons stripped of hex colors so all follow pywal |
 
 ## Install
 
@@ -26,7 +27,7 @@ Each top-level folder is a [GNU Stow](https://www.gnu.org/software/stow/) packag
 ```sh
 git clone https://github.com/alibori/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-stow wal bspwm sxhkd polybar alacritty zellij nvim picom herdr qutebrowser starship dmenu tealdeer vim dunst
+stow wal bspwm sxhkd polybar alacritty zellij nvim picom herdr qutebrowser starship dmenu tealdeer vim dunst yazi
 
 # zjstatus plugin for the zellij layout (not committed)
 mkdir -p ~/.config/zellij/plugins
