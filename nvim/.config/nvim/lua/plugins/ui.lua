@@ -10,8 +10,29 @@ return {
                     theme = "auto",
                     globalstatus = true,
                 },
+                tabline = { lualine_a = { "buffers" } },
             })
         end,
+    },
+
+    {
+        "b0o/incline.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        event = "VeryLazy",
+        opts = {
+            window = { placement = { horizontal = "right", vertical = "top" } },
+            hide = { cursorline = "smart" },
+            render = function(props)
+                local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(props.buf), ":t")
+                if name == "" then name = "[No Name]" end
+                local icon, color = require("nvim-web-devicons").get_icon_color(name)
+                return {
+                    icon and { icon, " ", guifg = color } or "",
+                    name,
+                    vim.bo[props.buf].modified and " [+]" or "",
+                }
+            end,
+        },
     },
 
     {
