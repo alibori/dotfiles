@@ -27,6 +27,14 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+-- Quickfix: jump to entry and close list
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "qf",
+    callback = function(event)
+        vim.keymap.set("n", "<CR>", "<CR><cmd>cclose<CR>", { buffer = event.buf, silent = true })
+    end,
+})
+
 -- Spell + wrap for prose filetypes
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "gitcommit", "markdown" },
