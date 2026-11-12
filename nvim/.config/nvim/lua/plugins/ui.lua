@@ -10,7 +10,16 @@ return {
                     theme = "auto",
                     globalstatus = true,
                 },
-                tabline = { lualine_a = { "buffers" } },
+                tabline = {
+                    lualine_a = {
+                        {
+                            "buffers",
+                            section_separators = { left = "", right = "" },
+                            component_separators = { left = "", right = "" },
+                            symbols = { modified = " ●", alternate_file = "" },
+                        },
+                    },
+                },
             })
         end,
     },
